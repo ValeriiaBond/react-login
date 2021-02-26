@@ -1,13 +1,85 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue Light', sans-serif;
+    font-size: 14px;
+    color: #666;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+input, button{
+    appearance: none;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.App{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form{
+    display: block;
+    width: 414px;
+    position: relative;
+    border: 1px solid rgba(153, 153, 153, .33);
+    border-radius: 5.5px;
+    padding: 34px 0;
+}
+
+h2{
+    font-weight: normal;
+    padding-left: 58px;
+    margin-bottom: 34px;
+}
+
+h2>span{
+    color: #52b2d0;
+    font-weight: 700;
+    font-size: 32px;
+}
+.form-inner{
+    margin: 0 auto;
+    width: 295px;
+}
+
+.form-email{
+    margin-bottom: 34px;
+}
+.form-password{
+    margin-bottom: 40px;
+}
+
+.form-inner input{
+    display: block;
+    width: 100%;
+    height: 40px;
+    border: 1px solid rgba(153, 153, 153, .28);
+    border-radius: 5px;
+    padding-left: 40px;
+}
+
+.form-inner .btn-login{
+    width: 90px;
+    padding: 0;
+    text-align: center;
+    color: #fff;
+    background-color: #52b2d0;
+    font-size: 18px;
+    letter-spacing: -0.18px;
+}
+
+a{
+    text-decoration: none;
+    color: #52b2d0;
+    font-size: 12px;
+}
+
+p{
+    font-size: 12px;
+    vertical-align: bottom;
+    margin-top: 6px;
 }
