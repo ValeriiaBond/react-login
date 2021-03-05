@@ -1,45 +1,81 @@
-import React, { useState } from 'react';
-import LoginForm from './components/LoginForm'
+import React, { useEffect, useState } from 'react';
 
-function App() {
-  const adminUser = {
-    email: "admin@admin.com",
-    password: "admin123"
-  }
+const App = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [emailDirty, setEmailDirty] = useState(false)
+  const [emailSuccess, setEmailSuccess] = useState(false)
+  const [passwordSuccess, setPasswordSuccess] = useState(false)
+  const [passwordDirty, setPasswordDirty] = useState(false)
+  const [emailError, setEmailError] = useState('Invalid Username')
+  const [passwordError, setPasswordError] = useState('Invalid password')
+  const [formValid, setFormValid] = useState(false)
 
-  const [user, setUser] = useState({ name: "", email: "" });
-  const [error, setError] = useState("");
-
-  const Login = details => {
-    console.log(details);
-
-    if (details.email == adminUser.email && details.password == adminUser.password) {
-      console.log("Logged in");
-      setUser({
-        name: details.name,
-        email: details.email
-      });
+  useEffect(() => {
+    if (emailError || passwordError) {
+      setFormValid(false)
     } else {
-      console.log("Details do not match");
-      setError("Details do not match");
+      setFormValid(true)
+    }
+  })
+
+  function blurHandler(e) {
+    switch (e.target.name) {
+      case 'email':
+        setEmailDirty(true);
+        break;
+      case 'password':
+        setPasswordDirty(true);
+        break;
     }
   }
 
-  const Logout = () => {
-    setUser({ name: "", email: "" });
+  const emailHandler = (e) => {
+    setEmail(e.target.value)
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!re.test(String(e.target.value).toLowerCase())) {
+      setEmailError('Invalid Username')
+      setEmailSuccess(false)
+    } else {
+      setEmailError('')
+      setEmailSuccess(true)
+    }
+  }
+
+  const passwordlHandler = (e) => {
+    setPassword(e.target.value)
+    if (e.target.value.length < 8) {
+      setPasswordError('Invalid password')
+      if (!e.target.value) {
+        setPasswordError('Password should not be empty')
+      }
+    } else {
+      setPasswordError('')
+      setPasswordSuccess(true)
+    }
   }
 
 
   return (
-    <div className="App">
-      {(user.email != "") ? (
-        <div className="welcome">
-          <h2>Welcome <span>{user.name}</span></h2>
-          <button onClick={Logout}>Logout</button>
+    <div className="login-body">
+      <h2><span>Bank</span> Support Poprtal</h2>
+      <form>
+        <div className="form-inner">
+          {/* {(error != "") ? (<div className="error">{error}</div>) : ""} */}
+          <div className="form-email">
+            <input value={email} type="email" name="email" id="email" placeholder="E-mail" className="input-email" onBlur={e => blurHandler(e)} onChange={e => emailHandler(e)} />
+          </div>
+          {(emailDirty && emailError) && <div className='email-error-message' style={{ color: 'red' }}>{emailError}</div>}
+          {(emailSuccess) && <div className='email-success-message'>{''}</div>}
+          <div className="form-password">
+            <input value={password} type="password" name="password" id="password" placeholder="Password" onBlur={e => blurHandler(e)} onChange={e => passwordlHandler(e)} />
+          </div>
+          {(passwordDirty && passwordError) && <div className='password-error-message' style={{ color: 'red' }}>{passwordError}</div>}
+          {(passwordSuccess) && <div className='password-success-message'>{''}</div>}
+          <input disabled={!formValid} type="submit" value="Login" className="btn-login" />
+          <p>Forgot your password? <a href="#">Reset it here.</a></p>
         </div>
-      ) : (
-          <LoginForm Login={Login} error={error} />
-        )}
+      </form>
     </div>
   );
 }

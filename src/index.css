@@ -2,83 +2,133 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Helvetica Neue Light', sans-serif;
+    font-family: "Helvetica Neue Light", sans-serif;
     font-size: 14px;
     color: #666;
 }
 
-input, button{
+input,
+button {
     appearance: none;
     background: none;
     border: none;
     outline: none;
 }
 
-.App{
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-form{
+form {
     display: block;
     width: 414px;
     position: relative;
-    border: 1px solid rgba(153, 153, 153, .33);
+    border: 1px solid rgba(153, 153, 153, 0.33);
     border-radius: 5.5px;
     padding: 34px 0;
 }
 
-h2{
+h2 {
     font-weight: normal;
     padding-left: 58px;
     margin-bottom: 34px;
+    font-size: 18px;
+    font-weight: 300;
 }
 
-h2>span{
+h2 > span {
     color: #52b2d0;
     font-weight: 700;
-    font-size: 32px;
+    font-size: 41px;
 }
-.form-inner{
+.login-body {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.form-inner {
     margin: 0 auto;
     width: 295px;
 }
 
-.form-email{
-    margin-bottom: 34px;
+.form-email {
+    padding-bottom: 7px;
+    position: relative;
+    background-color: transparent;
 }
-.form-password{
-    margin-bottom: 40px;
+.form-email::before,
+.form-password::before {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 13px;
+    top: 13px;
+    left: 16px;
+}
+.form-email::before {
+    background: url(img/mail.png) no-repeat;
+}
+.form-password::before {
+    background: url(img/lock.png) no-repeat;
+}
+.form-password {
+    position: relative;
+    margin-top: 27px;
+    padding-bottom: 7px;
+}
+.password-error-message,
+.email-error-message {
+    font-size: 11px;
+    position: relative;
+}
+.email-error-message::after,
+.password-error-message::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    left: calc(100% + 9px);
+    top: -33px;
+    background: url(img/error.png);
+}
+.email-success-message,
+.password-success-message {
+    width: 11px;
+    height: 11px;
+    background: url(img/success.png);
+    position: absolute;
+    top: 47px;
+    right: 37px;
+}
+.password-success-message {
+    top: 121px;
+    right: 37px;
 }
 
-.form-inner input{
+.form-inner input {
     display: block;
     width: 100%;
     height: 40px;
-    border: 1px solid rgba(153, 153, 153, .28);
+    border: 1px solid rgba(153, 153, 153, 0.28);
     border-radius: 5px;
     padding-left: 40px;
 }
 
-.form-inner .btn-login{
+.form-inner .btn-login {
+    margin-top: 33px;
     width: 90px;
     padding: 0;
     text-align: center;
     color: #fff;
-    background-color: #52b2d0;
+    background-color: #36a2c1;
     font-size: 18px;
     letter-spacing: -0.18px;
 }
 
-a{
+a {
     text-decoration: none;
-    color: #52b2d0;
+    color: #36a2c1;
     font-size: 12px;
 }
 
-p{
+p {
     font-size: 12px;
     vertical-align: bottom;
     margin-top: 6px;
